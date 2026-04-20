@@ -1,0 +1,245 @@
+
+/*
+
+RESET
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: #f4f6f9;
+  color: #333;
+}
+
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+  transition: 0.3s;
+}  */
+
+
+/* =========================
+   GLOBAL RESET + BASE
+========================= */
+/* =========================
+   GLOBAL RESET
+========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", "Segoe UI", sans-serif;
+}
+
+body {
+  background: #f4f6fb;
+  color: #1f2937;
+}
+
+/* =========================
+   MAIN CONTAINER
+========================= */
+.dashboard-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 30px 20px;
+}
+
+/* =========================
+   HEADER
+========================= */
+h2 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+h3 {
+  font-size: 18px;
+  margin: 15px 0;
+  font-weight: 600;
+  color: #111827;
+}
+
+/* =========================
+   FORM CARD (CREATE TASK)
+========================= */
+form,
+.create-task-box {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 14px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  margin-bottom: 25px;
+  border: 1px solid #eef0f5;
+}
+
+/* INPUTS */
+input {
+  width: 100%;
+  padding: 12px 14px;
+  margin: 8px 0;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  outline: none;
+  transition: all 0.3s ease;
+  background: #f9fafb;
+}
+
+input:focus {
+  border-color: #6366f1;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+/* =========================
+   BUTTONS
+========================= */
+button {
+  padding: 10px 14px;
+  margin: 6px 5px 6px 0;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.3s ease;
+}
+
+/* Primary button */
+button.primary {
+  background: #4f46e5;
+  color: white;
+}
+
+button.primary:hover {
+  background: #4338ca;
+}
+
+/* Secondary buttons */
+button:not(.primary) {
+  background: #e5e7eb;
+  color: #111827;
+}
+
+button:not(.primary):hover {
+  background: #d1d5db;
+}
+
+/* Filter buttons highlight */
+.filter-btn {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+}
+
+.filter-btn:hover {
+  background: #eef2ff;
+  border-color: #6366f1;
+  color: #4338ca;
+}
+
+/* =========================
+   TASK LIST GRID
+========================= */
+.task-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+
+/* TASK CARD */
+.task-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  border: 1px solid #eef0f5;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.task-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* TASK TITLE */
+.task-card h3 {
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: #111827;
+}
+
+/* TEXT */
+.task-card p {
+  font-size: 13px;
+  color: #6b7280;
+  margin: 4px 0;
+}
+
+/* STATUS BADGES */
+.status {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status.pending {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.status.completed {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.status.inprogress {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+/* =========================
+   SEPARATOR
+========================= */
+hr {
+  border: none;
+  height: 1px;
+  background: #e5e7eb;
+  margin: 20px 0;
+}
+
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 15px;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+
+  button {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+
+  .task-grid {
+    grid-template-columns: 1fr;
+  }
+}

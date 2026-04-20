@@ -1,0 +1,74 @@
+/* CONTAINER */
+.container {
+  width: 90%;
+  max-width: 900px;
+  margin: 30px auto;
+}
+
+/* CARD */
+.card {
+  background: #fff;
+  padding: 20px;
+  margin-bottom: 15px;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+/* INPUTS */
+.card input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.card input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* BUTTON */
+.card button {
+  padding: 10px 15px;
+  margin-top: 10px;
+  background: #007bff;
+  color: white;
+}
+
+.card button:hover {
+  background: #0056b3;
+}
+
+/* FILTER BUTTONS */
+.filter-btns {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.filter-btns button {
+  margin: 5px;
+  padding: 8px 15px;
+  background: #6c757d;
+  color: white;
+}
+
+.filter-btns button:hover {
+  background: #495057;
+}
+
+/* TASK CARD */
+.task {
+  border-left: 5px solid #007bff;
+}
+
+/* STATUS COLORS */
+.status {
+  font-weight: bold;
+  color: green;
+}
+
+/* TEXT */
+.task p {
+  margin: 5px 0;
+}
