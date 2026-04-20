@@ -1,150 +1,6 @@
-// import React, { useEffect, useState } from "react";
-// import axios from "axios";
-// import "../styles/global.css";
-// const Dashboard = () => {
-//   const [tasks, setTasks] = useState([]);
-//   const [filter, setFilter] = useState("all");
-
-//   const [title, setTitle] = useState("");
-//   const [description, setDescription] = useState("");
-//   const [dueDate, setDueDate] = useState("");
-
-//   const token = localStorage.getItem("token");
-
-//   const fetchTasks = async () => {
-//     try {
-//       const res = await axios.get("http://localhost:5000/api/tasks", {
-//         headers: {
-//           Authorization: `Bearer ${token}`,
-//         },
-//       });
-
-//       setTasks(res.data);
-//     } catch (err) {
-//       console.log(err);
-//     }
-//   };
-
-//   useEffect(() => {
-//     fetchTasks();
-//   }, []);
-
-//   // decode user id
-//   const userId = JSON.parse(atob(token.split(".")[1])).id;
-
-//   // filter logic
-//   const filteredTasks = tasks.filter((task) => {
-//     if (filter === "my") return task.creator?._id === userId;
-//     if (filter === "assigned") return task.assignedTo?._id === userId;
-//     return true;
-//   });
-
-//   // CREATE TASK
-//   const createTask = async () => {
-//     try {
-//       await axios.post(
-//         "http://localhost:5000/api/tasks",
-//         {
-//           title,
-//           description,
-//           dueDate,
-//         },
-//         {
-//           headers: {
-//             Authorization: `Bearer ${token}`,
-//           },
-//         }
-//       );
-
-//       setTitle("");
-//       setDescription("");
-//       setDueDate("");
-
-//       fetchTasks();
-//     } catch (err) {
-//       console.log(err);
-//     }
-//   };
-
-//   return (
-//     <div style={{ padding: "20px" }}>
-//       <h2>Dashboard</h2>
-
-//       {/* ✅ CREATE TASK FORM */}
-//       <h3>Create Task</h3>
-
-//       <input
-//         type="text"
-//         placeholder="Enter title"
-//         value={title}
-//         onChange={(e) => setTitle(e.target.value)}
-//       />
-
-//       <br /><br />
-
-//       <input
-//         type="text"
-//         placeholder="Enter description"
-//         value={description}
-//         onChange={(e) => setDescription(e.target.value)}
-//       />
-
-//       <br /><br />
-
-//       <input
-//         type="date"
-//         value={dueDate}
-//         onChange={(e) => setDueDate(e.target.value)}
-//       />
-
-//       <br /><br />
-
-//       <button onClick={createTask}>Create Task</button>
-
-//       <hr />
-
-//       {/* ✅ FILTER BUTTONS */}
-//       <button onClick={() => setFilter("all")}>All Tasks</button>
-//       <button onClick={() => setFilter("my")}>My Tasks</button>
-//       <button onClick={() => setFilter("assigned")}>Assigned Tasks</button>
-
-//       <hr />
-
-//       {/* ✅ TASK LIST */}
-//       {filteredTasks.map((task) => (
-//         <div
-//           key={task._id}
-//           style={{
-//             border: "1px solid black",
-//             margin: "10px",
-//             padding: "10px",
-//           }}
-//         >
-//           <h3>{task.title}</h3>
-//           <p>{task.description}</p>
-
-//           <p><b>Status:</b> {task.status}</p>
-
-//           <p>
-//             <b>Due:</b>{" "}
-//             {task.dueDate
-//               ? new Date(task.dueDate).toLocaleDateString()
-//               : "N/A"}
-//           </p>
-
-//           <p><b>Creator:</b> {task.creator?.name}</p>
-//           <p><b>Assigned:</b> {task.assignedTo?.name || "None"}</p>
-//         </div>
-//       ))}
-//     </div>
-//   );
-// };
-
-// export default Dashboard;
-
-
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom"; // ✅ ADDED
 import "../styles/global.css";
 
 const Dashboard = () => {
@@ -158,8 +14,22 @@ const Dashboard = () => {
   const [darkMode, setDarkMode] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
+  const navigate = useNavigate(); // ✅ ADDED
+
   const token = localStorage.getItem("token");
-  const userId = JSON.parse(atob(token.split(".")[1])).id;
+
+  // ✅ SAFE TOKEN CHECK (ADDED)
+  let userId = null;
+  if (token) {
+    userId = JSON.parse(atob(token.split(".")[1])).id;
+  }
+
+  // ✅ PROTECT ROUTE (ADDED)
+  useEffect(() => {
+    if (!token) {
+      navigate("/login");
+    }
+  }, []);
 
   const fetchTasks = async () => {
     try {
@@ -212,7 +82,16 @@ const Dashboard = () => {
         <button onClick={() => setFilter("my")}>👤 My Tasks</button>
         <button onClick={() => setFilter("assigned")}>📌 Assigned</button>
 
-        
+        {/* ✅ LOGOUT ADDED */}
+        <button
+          onClick={() => {
+            localStorage.removeItem("token");
+            navigate("/login");
+          }}
+        >
+          🚪 Logout
+        </button>
+
       </div>
 
       {/* MAIN */}

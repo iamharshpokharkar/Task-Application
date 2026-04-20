@@ -3,6 +3,7 @@ import API from "../api";
 import { useNavigate } from "react-router-dom";
 import "../styles/global.css";
 import "../styles/auth.css";
+
 function Login() {
   const [form, setForm] = useState({ email: "", password: "" });
   const navigate = useNavigate();
@@ -16,7 +17,10 @@ function Login() {
       localStorage.setItem("token", res.data.token);
 
       alert("Login successful");
+
+      // ✅ FIXED FLOW (KEEP YOUR CODE, JUST ENSURE REDIRECT)
       navigate("/dashboard");
+
     } catch (err) {
       alert(err.response?.data?.message || "Login failed");
     }

@@ -1,11 +1,7 @@
 import { useState } from "react";
 import API from "../api";
 import { useNavigate } from "react-router-dom";
-// import "./styles/global.css";
-// import "./styles";
 import "../styles/global.css";
-
-
 
 function Register() {
   const [form, setForm] = useState({
@@ -23,7 +19,10 @@ function Register() {
       await API.post("/auth/register", form);
 
       alert("User registered successfully");
-      navigate("/");
+
+      // ✅ FIXED FLOW
+      navigate("/login");
+
     } catch (err) {
       alert(err.response?.data?.message || "Register failed");
     }
